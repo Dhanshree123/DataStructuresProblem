@@ -81,16 +81,41 @@ public class MyLinkedListTest {
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
 
-		System.out.println("Before Deleting:- ");
+		System.out.println("Before Deleting First Element:- ");
 		myLinkedList.printMyNodes();
 
-		myLinkedList.pop();
+		System.out.println("Deleting element:- " + myLinkedList.pop().getKey());
 
-		System.out.println("After Deleting:- ");
+		System.out.println("After Deleting First Element:- ");
 		myLinkedList.printMyNodes();
 		System.out.println();
 
 		boolean result = myLinkedList.head.equals(mySecondNode) && myLinkedList.tail.equals(myThirdNode);
+
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void givenLastElementWhenDeletedShouldPassLinkedListResult() {
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(70);
+
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(mySecondNode);
+		myLinkedList.append(myThirdNode);
+
+		System.out.println("Before Deleting Last Element:- ");
+		myLinkedList.printMyNodes();
+
+		System.out.println("Deleting element:- " + myLinkedList.popLast().getKey());
+
+		System.out.println("After Deleting Last Element:- ");
+		myLinkedList.printMyNodes();
+		System.out.println();
+
+		boolean result = myLinkedList.head.equals(myFirstNode) && myLinkedList.tail.equals(mySecondNode);
 
 		Assert.assertTrue(result);
 	}

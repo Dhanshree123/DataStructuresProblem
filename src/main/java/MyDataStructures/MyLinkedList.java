@@ -35,7 +35,8 @@ public class MyLinkedList {
 				myNodes.append("->");
 			tempNode = tempNode.getNext();
 		}
-		myNodes.append(tempNode.getKey());
+		if (tempNode == tail)
+			myNodes.append(tempNode.getKey());
 		System.out.println(myNodes);
 	}
 
@@ -63,6 +64,18 @@ public class MyLinkedList {
 	public INode pop() {
 		INode tempNode = this.head;
 		this.head = head.getNext();
+		return tempNode;
+	}
+
+	public INode popLast() {
+		INode tempNode = head;
+
+		while (!(tempNode.getNext().equals(tail))) {
+			tempNode = tempNode.getNext();
+		}
+
+		this.tail = tempNode;
+		tempNode = tempNode.getNext();
 		return tempNode;
 	}
 
