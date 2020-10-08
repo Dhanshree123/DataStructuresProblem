@@ -1,10 +1,10 @@
 package MyDataStructures;
 
 
-public class MyLinkedList {
+public class MyLinkedList<K> {
 
-	public INode head;
-	public INode tail;
+	public INode<K> head;
+	public INode<K> tail;
 
 	public MyLinkedList() {
 		this.head = null;
@@ -80,15 +80,34 @@ public class MyLinkedList {
 		return tempNode;
 	}
 
-	public INode searchNode(Integer key) {
+	public INode searchNode(K key) {
 		INode tempNode = head;
-		while (tempNode.getNext() != null) {
-			if (tempNode.getKey().equals(key)) {
-				return tempNode;
+		while (tempNode != null && tempNode.getKey() != key) {
+			tempNode = tempNode.getNext();
 			}
+		return tempNode;
+	}
+
+	public INode deleteNode(INode myNode) {
+		INode temp = head;
+		  
+		  while(temp != null && temp.getNext().getKey() != myNode.getKey())
+			  temp = temp.getNext();
+		  
+		  INode desiredNode = temp.getNext();
+		  temp.setNext(desiredNode.getNext());
+		  desiredNode.setNext(null);
+		  return desiredNode;
+		
+	}
+	
+	public int size() {
+		INode counterNode = head;
+		int count = 1;
+		while (counterNode.getNext() != null) {
+			count++;
+			counterNode = counterNode.getNext();
 		}
-
-		return null;
-
+		return count;
 	}
 }
