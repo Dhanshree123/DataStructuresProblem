@@ -172,11 +172,34 @@ public class MyLinkedListTest {
 
 		INode myNode = myLinkedList.searchNode(40);
 		myLinkedList.deleteNode(myNode);
-		
+
 		myLinkedList.printMyNodes();
-		System.out.println("Size of linkedlist is  "+myLinkedList.size());
+		System.out.println("Size of linkedlist is  " + myLinkedList.size());
 		boolean result = myLinkedList.head.equals(myFirstNode) && myLinkedList.head.getNext().equals(mySecondNode)
 				&& myLinkedList.tail.equals(myFourthNode);
+
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void givenElementsShouldBeAddedInSortedOrder() {
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(40);
+		MyNode<Integer> myFourthNode = new MyNode<>(70);
+
+		SortedLinkedList sortedLinkedList = new SortedLinkedList();
+		sortedLinkedList.addInSortedOrder(myFirstNode);
+		sortedLinkedList.addInSortedOrder(mySecondNode);
+		sortedLinkedList.addInSortedOrder(myThirdNode);
+		sortedLinkedList.addInSortedOrder(myFourthNode);
+
+		System.out.println("Printing Sorted List :- ");
+		sortedLinkedList.printMyNodes();
+
+		boolean result = sortedLinkedList.head.getKey().equals(30)
+				&& sortedLinkedList.head.getNext().getKey().equals(40) && myThirdNode.getNext().getKey().equals(56)
+				&& sortedLinkedList.tail.getKey().equals(70);
 
 		Assert.assertTrue(result);
 	}

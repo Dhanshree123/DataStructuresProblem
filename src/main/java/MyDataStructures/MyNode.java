@@ -26,7 +26,7 @@ public class MyNode<K> implements INode<K> {
 	@Override
 	public void setKey(K Key) {
 		this.key = key;
-		
+
 	}
 
 }
