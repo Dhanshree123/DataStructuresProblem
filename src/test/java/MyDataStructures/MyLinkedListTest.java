@@ -1,7 +1,5 @@
 package MyDataStructures;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -131,13 +129,31 @@ public class MyLinkedListTest {
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
 
-		INode node = myLinkedList.searchNode(30);
+		INode newNode = myLinkedList.searchNode(30);
 
-		boolean result;
-		if (node == null)
-			result = false;
-		else
-			result = true;
+		boolean result = newNode.getKey().equals(30);
+
+		Assert.assertTrue(result);
+	}
+	
+	@Test
+	public void givenElementShouldBeAddedAfterGivenNode() {
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(70);
+
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(mySecondNode);
+		myLinkedList.append(myThirdNode);
+
+		INode myNode = myLinkedList.searchNode(30);
+		INode newNode = new MyNode<>(40);
+		myLinkedList.insert(myNode, newNode);
+		
+
+		boolean result = myLinkedList.head.equals(myFirstNode) && myLinkedList.head.getNext().equals(mySecondNode)
+				       && mySecondNode.getNext().equals(newNode)&& myLinkedList.tail.equals(myThirdNode);
 
 		Assert.assertTrue(result);
 	}
